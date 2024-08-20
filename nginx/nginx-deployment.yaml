@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-test
+  labels:
+    app: nginx-deployment-test
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-deployment-test
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment-test
+    spec:
+      containers:
+      - name: nginx-deployment-test
+        image: nginx:latest
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80
